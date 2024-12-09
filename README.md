@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Example App
+# FarmacoCheck
 
 Este é um projeto Laravel criado com [Laravel Sail](https://laravel.com/docs/10.x/sail), uma solução Docker para desenvolvimento local. Este guia ensina como rodar o projeto em máquinas com **Linux** e **Windows**.
 
