@@ -33,8 +33,8 @@ Se você estiver no Windows, recomenda-se usar o [Windows Subsystem for Linux (W
 Faça o clone deste repositório para sua máquina local:
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/seu-usuario/FarmacoCheck.git
+cd FarmacoCheck
 ```
 
 ### 2. Instale as dependências do Composer
