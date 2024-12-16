@@ -33,7 +33,7 @@ Se você estiver no Windows, recomenda-se usar o [Windows Subsystem for Linux (W
 Faça o clone deste repositório para sua máquina local:
 
 ```bash
-git clone https://github.com/seu-usuario/FarmacoCheck.git
+git clone https://github.com/silviosmsantos/FarmacoCheck.git
 cd FarmacoCheck
 ```
 
