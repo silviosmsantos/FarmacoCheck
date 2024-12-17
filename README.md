@@ -37,12 +37,17 @@ git clone https://github.com/silviosmsantos/FarmacoCheck.git
 cd FarmacoCheck
 ```
 
-### 2. Instale as dependências do Composer
+### 2. Instale as dependências
 
-Usando o Laravel Sail, instale as dependências do projeto:
+Execute o composer com o Docker, utilize o comando a seguir para instalar as dependencis do projeto usando a imagem oficial do Laravel Sail:
 
 ```bash
-./vendor/bin/sail composer install
+docker run --rm \
+ -u "$(id -u):$(id -g)" \
+ -v "$(pwd):/var/www/html" \
+ -w /var/www/html \
+ laravelsail/php83-composer:latest \
+ composer install --ignore-platform-reqs
 ```
 
 ### 3. Configurar o arquivo .env
