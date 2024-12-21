@@ -37,9 +37,12 @@ jobs:
         php-version: '8.2'
     - name: Install Dependencies
       run: |
-        curl -sS https://getcomposer.org/installer | php -- --version=2.7.6
-        sudo mv composer.phar /usr/local/bin/composer
-        composer install --no-interaction --prefer-dist
+        docker run --rm \
+         -u "$(id -u):$(id -g)" \
+         -v "$(pwd):/var/www/html" \
+         -w /var/www/html \
+         laravelsail/php83-composer:latest \
+         composer install --ignore-platform-reqs
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Start Sail
