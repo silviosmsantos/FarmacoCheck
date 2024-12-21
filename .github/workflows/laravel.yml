@@ -39,12 +39,8 @@ jobs:
         ini-values: post_max_size=256M, upload_max_filesize=256M
 
     - name: Install Composer Dependencies
-      run: |
-        docker run --rm \
-        -v "$(pwd):/var/www/html" \
-        -w /var/www/html \
-        laravelsail/php83-composer:latest \
-        composer install --ignore-platform-reqs
+      run: composer install --prefer-dist --no-progress
+      working-directory: FarmacoCheck
 
     - name: Copy .env
       run: cp .env.example .env
@@ -56,4 +52,4 @@ jobs:
       run: php artisan migrate --force
 
     - name: Run Tests
-      run: vendor/bin/phpunit
+      run: vendor/bin/pest
