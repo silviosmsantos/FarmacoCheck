@@ -1,4 +1,4 @@
-name: Laravel
+name: CI Pipeline
 
 on:
   push:
@@ -8,28 +8,46 @@ on:
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql/mysql-server:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: laravel
+          MYSQL_USER: sail
+          MYSQL_PASSWORD: password
+        ports:
+          - 3307:3306
+        options: --health-cmd="mysqladmin ping -uroot -ppassword" --health-interval=10s --health-timeout=5s --health-retries=10
+
+    env:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: laravel
+      DB_USERNAME: sail
+      DB_PASSWORD: password
+
     steps:
+    - uses: actions/checkout@v4
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
-        php-version: '8.0'
-    - uses: actions/checkout@v4
+        php-version: '8.2'
+    - name: Install Dependencies
+      run: |
+        curl -sS https://getcomposer.org/installer | php -- --version=2.7.6
+        sudo mv composer.phar /usr/local/bin/composer
+        composer install --no-interaction --prefer-dist
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Generate key
-      run: php artisan key:generate
-    - name: Directory Permissions
-      run: chmod -R 777 storage bootstrap/cache
-    - name: Create Database
+    - name: Start Sail
       run: |
-        mkdir -p database
-        touch database/database.sqlite
-    - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
-      run: php artisan test
+        ./vendor/bin/sail up -d
+    - name: Set Up Database
+      run: |
+        ./vendor/bin/sail artisan migrate --seed
+    - name: Execute tests
+      run: |
+        ./vendor/bin/sail test
