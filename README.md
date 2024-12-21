@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=silviosmsantos_FarmacoCheck&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=silviosmsantos_FarmacoCheck)
+
+
+
 # FarmacoCheck
 
 Este é um projeto Laravel criado com [Laravel Sail](https://laravel.com/docs/10.x/sail), uma solução Docker para desenvolvimento local. Este guia ensina como rodar o projeto em máquinas com **Linux** e **Windows**.
