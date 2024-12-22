@@ -59,7 +59,7 @@ jobs:
     - name: Set environment variables
       run: |
         echo "DB_CONNECTION=mysql" >> $GITHUB_ENV
-        echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
+        echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
         echo "DB_PORT=3306" >> $GITHUB_ENV
         echo "DB_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> $GITHUB_ENV
         echo "DB_USERNAME=${{ secrets.MYSQL_USER }}" >> $GITHUB_ENV
@@ -67,7 +67,7 @@ jobs:
 
     - name: Wait for MySQL to be ready
       run: |
-        until mysqladmin ping --host=${{ secrets.DB_HOST }} --user=${{ secrets.MYSQL_USER }} --password=${{ secrets.MYSQL_ROOT_PASSWORD }} --silent; do
+        until mysqladmin ping --host=127.0.0.1 --user=${{ secrets.MYSQL_USER }} --password=${{ secrets.MYSQL_ROOT_PASSWORD }} --silent; do
         echo "Waiting for MySQL..."
         sleep 60
         done
