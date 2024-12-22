@@ -63,7 +63,7 @@ jobs:
         DB_DATABASE: farmaco_check
         DB_USERNAME: root
         DB_PASSWORD: hp12c44
-      run: php artisan migrate
+      run: php artisan migrate --seed
 
     - name: Run tests
       working-directory: ./farmaco-check-app
