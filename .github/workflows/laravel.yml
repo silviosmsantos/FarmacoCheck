@@ -29,46 +29,36 @@ jobs:
           --health-retries=3
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: 8.3.14
-        extensions: mysql, pdo_mysql, mbstring, openssl, xml, ctype, tokenizer, zip
-        tools: composer, phpunit
-        coverage: none
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3.14
+          extensions: mysql, pdo_mysql, mbstring, openssl, xml, ctype, tokenizer, zip
+          tools: composer:v2
+          coverage: xdebug
 
-    - name: Install dependencies
-      working-directory: ./farmaco-check-app
-      run: composer install --no-progress --prefer-dist --optimize-autoloader
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-    - name: Install Pest
-      working-directory: ./farmaco-check-app
-      run: composer require pestphp/pest --dev --no-progress --prefer-dist
+      - name: Set up environment
+        run: cp .env.example .env
 
-    - name: Set up environment
-      working-directory: ./farmaco-check-app
-      run: cp .env.example .env
+      - name: Clear Laravel cache
+        run: php artisan config:clear
 
-    - name: Clear Laravel cache
-      working-directory: ./farmaco-check-app
-      run: php artisan config:clear
+      - name: Generate application key
+        run: php artisan key:generate
 
-    - name: Generate application key
-      working-directory: ./farmaco-check-app
-      run: php artisan key:generate
+      - name: Run migrations
+        env:
+          DB_CONNECTION: mysql
+          DB_DATABASE: farmaco_check
+          DB_USERNAME: root
+          DB_PASSWORD: hp12c44
+        run: php artisan migrate --seed
 
-    - name: Run migrations
-      working-directory: ./farmaco-check-app
-      env:
-        DB_CONNECTION: mysql
-        DB_DATABASE: farmaco_check
-        DB_USERNAME: root
-        DB_PASSWORD: hp12c44
-      run: php artisan migrate --seed
-
-    - name: Run tests
-      working-directory: ./farmaco-check-app
-      run: vendor/bin/pest
+      - name: Run tests
+        run: ./vendor/bin/pest --ci
