@@ -1,0 +1,88 @@
+name: Laravel CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: hp12c44
+          MYSQL_DATABASE: farmaco_check
+          MYSQL_USER: user
+          MYSQL_PASSWORD: hp12c44
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.3.14
+        extensions: mysql, pdo_mysql, mbstring, openssl, xml, ctype, tokenizer, zip
+        tools: composer, phpunit
+        coverage: none
+
+    - name: Install dependencies
+      working-directory: ./farmaco-check-app
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+    - name: Install Pest
+      working-directory: ./farmaco-check-app
+      run: composer require pestphp/pest --dev --no-progress --prefer-dist
+
+    - name: Set up environment
+      working-directory: ./farmaco-check-app
+      run: cp .env.example .env
+
+    - name: Generate application key
+      working-directory: ./farmaco-check-app
+      run: php artisan key:generate
+
+    - name: Set environment variables
+      run: |
+        echo "DB_CONNECTION=mysql" >> $GITHUB_ENV
+        echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
+        echo "DB_PORT=3306" >> $GITHUB_ENV
+        echo "DB_DATABASE=farmaco_check" >> $GITHUB_ENV
+        echo "DB_USERNAME=root" >> $GITHUB_ENV
+        echo "DB_PASSWORD=hp12c44" >> $GITHUB_ENV
+
+    - name: Wait for MySQL to be ready
+      run: |
+        until mysqladmin ping --host=127.0.0.1 --user=root --password=hp12c44 --silent; do
+        echo "Waiting for MySQL..."
+        sleep 60
+        done
+
+    - name: Run migrations
+      working-directory: ./farmaco-check-app
+      run: php artisan migrate --seed
+      env:
+            DB_CONNECTION: mysql
+            DB_HOST: 127.0.0.1
+            DB_PORT: 3306
+            DB_DATABASE: farmaco_check
+            DB_USERNAME: root
+            DB_PASSWORD: hp12c44
+
+    - name: Run tests
+      working-directory: ./farmaco-check-app
+      run: vendor/bin/pest --ci
