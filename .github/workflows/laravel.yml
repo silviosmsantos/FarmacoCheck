@@ -18,10 +18,10 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_ROOT_PASSWORD: hp12c44
+          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: farmaco_check
-          MYSQL_USER: root
-          MYSQL_PASSWORD: hp12c44
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
         options: >-
           --health-cmd="mysqladmin ping --silent"
           --health-interval=10s
@@ -36,35 +36,31 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: 8.3.14
-        extensions: mysql, pdo_mysql, mbstring, openssl, pdo_mysql, xml, ctype, tokenizer, zip
+        extensions: mysql, pdo_mysql, mbstring, openssl, xml, ctype, tokenizer, zip
         tools: composer, pest, phpunit
         coverage: none
 
     - name: Install dependencies
-      run: |
-          cd farmaco-check-app
-          composer install --no-progress --prefer-dist --optimize-autoloader
+      working-directory: ./farmaco-check-app
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
 
     - name: Set up environment
-      run: |
-          cp farmaco-check-app/.env.example farmaco-check-app/.env
+      working-directory: ./farmaco-check-app
+      run: cp .env.example .env
 
     - name: Generate application key
-      run: |
-          cd farmaco-check-app
-          php artisan key:generate
+      working-directory: ./farmaco-check-app
+      run: php artisan key:generate
 
     - name: Run migrations
+      working-directory: ./farmaco-check-app
       env:
         DB_CONNECTION: mysql
         DB_DATABASE: farmaco_check
         DB_USERNAME: root
         DB_PASSWORD: hp12c44
-      run: |
-          cd farmaco-check-app
-          php artisan migrate
+      run: php artisan migrate
 
     - name: Run tests
-      run: |
-          cd farmaco-check-app
-          vendor/bin/pest
+      working-directory: ./farmaco-check-app
+      run: vendor/bin/pest
