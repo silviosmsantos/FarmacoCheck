@@ -65,6 +65,13 @@ jobs:
         echo "DB_USERNAME=root" >> $GITHUB_ENV
         echo "DB_PASSWORD=hp12c44" >> $GITHUB_ENV
 
+    - name: Wait for MySQL to be ready
+      run: |
+        until mysqladmin ping --host=127.0.0.1 --user=root --password=hp12c44 --silent; do
+        echo "Waiting for MySQL..."
+        sleep 5
+        done
+
     - name: Run migrations
       working-directory: ./farmaco-check-app
       run: php artisan migrate --seed
@@ -78,4 +85,4 @@ jobs:
 
     - name: Run tests
       working-directory: ./farmaco-check-app
-      run: vendor/bin/pest --ci --debug
+      run: vendor/bin/pest --ci
