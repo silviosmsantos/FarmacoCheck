@@ -1,0 +1,61 @@
+name: Laravel CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel_test
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.3.14
+        extensions: mysql, pdo_mysql, mbstring, openssl, pdo_mysql, xml, ctype, tokenizer, zip
+        tools: composer, pest, phpunit
+        coverage: none
+
+    - name: Install dependencies
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+    - name: Set up environment
+      run: cp .env.example .env
+
+    - name: Generate application key
+      run: php artisan key:generate
+
+    - name: Run migrations
+      env:
+        DB_CONNECTION: mysql
+        DB_DATABASE: farmaco_check
+        DB_USERNAME: root
+        DB_PASSWORD: hp12c44
+      run: php artisan migrate
+
+    - name: Run tests
+      run: vendor/bin/pest
