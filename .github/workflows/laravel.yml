@@ -18,10 +18,10 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_ROOT_PASSWORD: hp12c44
-          MYSQL_DATABASE: farmaco_check
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           MYSQL_USER: user
-          MYSQL_PASSWORD: hp12c44
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
         options: >-
           --health-cmd="mysqladmin ping --silent"
           --health-interval=10s
@@ -61,13 +61,13 @@ jobs:
         echo "DB_CONNECTION=mysql" >> $GITHUB_ENV
         echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
         echo "DB_PORT=3306" >> $GITHUB_ENV
-        echo "DB_DATABASE=farmaco_check" >> $GITHUB_ENV
-        echo "DB_USERNAME=root" >> $GITHUB_ENV
-        echo "DB_PASSWORD=hp12c44" >> $GITHUB_ENV
+        echo "DB_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> $GITHUB_ENV
+        echo "DB_USERNAME=${{ secrets.MYSQL_USER }}" >> $GITHUB_ENV
+        echo "DB_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> $GITHUB_ENV
 
     - name: Wait for MySQL to be ready
       run: |
-        until mysqladmin ping --host=127.0.0.1 --user=root --password=hp12c44 --silent; do
+        until mysqladmin ping --host=127.0.0.1 --user=${{ secrets.MYSQL_USER }} --password=${{ secrets.MYSQL_ROOT_PASSWORD }} --silent; do
         echo "Waiting for MySQL..."
         sleep 60
         done
@@ -79,9 +79,9 @@ jobs:
             DB_CONNECTION: mysql
             DB_HOST: 127.0.0.1
             DB_PORT: 3306
-            DB_DATABASE: farmaco_check
-            DB_USERNAME: root
-            DB_PASSWORD: hp12c44
+            DB_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+            DB_USERNAME: ${{ secrets.MYSQL_USER }}
+            DB_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
 
     - name: Run tests
       working-directory: ./farmaco-check-app
