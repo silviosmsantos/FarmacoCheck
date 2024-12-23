@@ -7,6 +7,9 @@
   <a href="https://pestphp.com">
     <img src="https://img.shields.io/badge/Tested_with-Pest-7b42bc" alt="Tested with Pest">
   </a>
+    <a href="https://github.com/silviosmsantos/FarmacoCheck/runs/34810727501">
+    <img src="https://sonarcloud.io/api/project_badges/measure?project=silviosmsantos_FarmacoCheck&metric=alert_status" alt="Quality Gate Status">
+  </a>
   <a href="https://github.com/silviosmsantos/FarmacoCheck/commits/main">
     <img src="https://img.shields.io/github/last-commit/silviosmsantos/FarmacoCheck" alt="Last Commit">
   </a>
@@ -20,7 +23,6 @@
     <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
   </a>
 </p>
-
 
 
 # FarmacoCheck
