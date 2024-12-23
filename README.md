@@ -1,12 +1,23 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
-<a href="https://github.com/silviosmsantos/FarmacoCheck/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://github.com/silviosmsantos/FarmacoCheck/actions/runs/12459510197"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Tests"></a>
-<a href="https://laravel.com/docs/11.x"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Laravel Framework"></a>
-<a href="https://www.php.net/"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="PHP 8.1"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="https://github.com/silviosmsantos/FarmacoCheck/actions">
+    <img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status">
+  </a>
+  <a href="https://github.com/silviosmsantos/FarmacoCheck/actions/runs/12459510197">
+    <img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Tests">
+  </a>
+  <a href="https://laravel.com/docs/11.x">
+    <img src="https://img.shields.io/badge/Laravel-Documentation-orange" alt="Laravel Documentation">
+  </a>
+  <a href="https://www.php.net/">
+    <img src="https://img.shields.io/badge/PHP-8.1-blue" alt="PHP 8.1">
+  </a>
+  <a href="https://packagist.org/packages/laravel/framework">
+    <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+  </a>
 </p>
+
 
 
 # FarmacoCheck
