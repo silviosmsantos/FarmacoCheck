@@ -39,7 +39,7 @@ Antes de começar, verifique se você possui os seguintes requisitos instalados 
 - [Node.js](https://nodejs.org/) >= 16.x
 - [NPM](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
 - [MySQL](https://dev.mysql.com/downloads/)
-- [Git] (https://git-scm.com/)
+- [Git](https://git-scm.com/)
 
 ### Para Windows
 
