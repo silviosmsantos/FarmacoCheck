@@ -4,8 +4,11 @@
   <a href="https://github.com/silviosmsantos/FarmacoCheck/actions">
     <img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status">
   </a>
-  <a href="https://github.com/silviosmsantos/FarmacoCheck/actions/runs/12459510197">
-    <img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Tests">
+  <a href="https://pestphp.com">
+    <img src="https://img.shields.io/badge/Tested_with-Pest-7b42bc" alt="Tested with Pest">
+  </a>
+  <a href="https://github.com/silviosmsantos/FarmacoCheck/commits/main">
+    <img src="https://img.shields.io/github/last-commit/silviosmsantos/FarmacoCheck" alt="Last Commit">
   </a>
   <a href="https://laravel.com/docs/11.x">
     <img src="https://img.shields.io/badge/Laravel-Documentation-orange" alt="Laravel Documentation">
