@@ -55,7 +55,7 @@ Se você estiver no Windows, recomenda-se usar o [Windows Subsystem for Linux (W
 Abra o terminal e execute:
 
 ```bash
-git clone https://github.com/seu-usuario/farmaco-check-app.git
+git clone https://github.com/silviosmsantos/farmaco-check-app.git
 cd farmaco-check-app
 ```
 
@@ -71,7 +71,6 @@ Em seguida, instale as dependências JavaScript:
 
 ```bash
 npm install
-```
 ```
 
 ### 3. Configurar o arquivo .env
@@ -175,4 +174,4 @@ Sinta-se à vontade para abrir issues ou enviar pull requests para melhorias no 
 Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ### Nota
-Na minha máquina roda...(risos)! mas caso enfrente problemas, verifique os requisitos de versão e se todas as dependências foram instaladas corretamente. Em caso de dúvidas, consulte a [documentação oficial do Laravel](https://laravel.com/docs).
+Na minha máquina roda...(risos)! Mas caso enfrente problemas, verifique os requisitos de versão e se todas as dependências foram instaladas corretamente. Em caso de dúvidas, consulte a [documentação oficial do Laravel](https://laravel.com/docs).
