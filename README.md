@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/silviosmsantos/FarmacoCheck/blob/main/farmacocheckSVG.svg" width="500" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://orca-app-9k2ie.ondigitalocean.app/" target="_blank"><img src="https://github.com/silviosmsantos/FarmacoCheck/blob/main/farmacocheckSVG.svg" width="450" alt="Laravel Logo"></a></p>
 
 <p align="center">
   <a href="https://github.com/silviosmsantos/FarmacoCheck/actions">
