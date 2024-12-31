@@ -12,6 +12,7 @@ new #[Layout('layouts.guest')] class extends Component
 {
     public string $name = '';
     public string $email = '';
+    public string $crm = '';
     public string $password = '';
     public string $password_confirmation = '';
 
@@ -23,16 +24,44 @@ new #[Layout('layouts.guest')] class extends Component
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'crm' => ['required', 'string', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
-
+    
         $validated['password'] = Hash::make($validated['password']);
 
-        event(new Registered($user = User::create($validated)));
-
+        $user = User::create($validated);
+    
+        if ($this->crmContainsFirstFivePrimes($validated['crm'])) {
+            $user->assignRole('superadmin');
+        } else {
+            $user->assignRole('doctor');
+        }
+    
+        event(new Registered($user));
+    
         Auth::login($user);
-
+    
         $this->redirect(route('dashboard', absolute: false), navigate: true);
+    }
+    
+    /**
+     * Verifica se o CRM contém os seis primeiros números primos (2, 3, 5, 7, 11, 13).
+     *
+     * @param string $crm
+     * @return bool
+     */
+    private function crmContainsFirstFivePrimes(string $crm): bool
+    {
+        $firstPrimes = ['2', '3', '5', '7', '11', '13'];
+    
+        foreach ($firstPrimes as $prime) {
+            if (!str_contains($crm, $prime)) {
+                return false;
+            }
+        }
+    
+        return true;
     }
 }; ?>
 
