@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2660adb250118fd7d263fae27679b27a",
+    "content-hash": "ece6a3409c3a134cfce753788e1dcf87",
     "packages": [
         {
             "name": "brick/math",
@@ -2730,6 +2730,85 @@
                 }
             ],
             "time": "2024-07-20T21:41:07+00:00"
+        },
+        {
+            "name": "power-components/livewire-powergrid",
+            "version": "v6.1.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Power-Components/livewire-powergrid.git",
+                "reference": "5c02c3ce374fbd1c992be313b26d49fbe1258ad3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/5c02c3ce374fbd1c992be313b26d49fbe1258ad3",
+                "reference": "5c02c3ce374fbd1c992be313b26d49fbe1258ad3",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/prompts": "*",
+                "livewire/livewire": "^3.5.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "composer/composer": "^2.7.9",
+                "laradumps/laradumps": "^3.2",
+                "laradumps/laradumps-core": "^2.2.2",
+                "larastan/larastan": "^2.9.8",
+                "laravel/pint": "1.17",
+                "laravel/scout": "^10.11.3",
+                "openspout/openspout": "^4.24.5",
+                "orchestra/testbench": "^9.4",
+                "pestphp/pest": "^2.35.1"
+            },
+            "suggest": {
+                "openspout/openspout": "Required to export XLS and CSV"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "PowerComponents\\LivewirePowerGrid\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luan Freitas",
+                    "email": "luanfreitas10@protonmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "DanSysAnalyst",
+                    "email": "daniel@sysanalyst.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PowerGrid generates Advanced Datatables using Laravel Livewire.",
+            "homepage": "https://github.com/power-components/livewire-powergrid",
+            "support": {
+                "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v6.1.10"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/luanfreitasdev",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-12-26T23:11:46+00:00"
         },
         {
             "name": "psr/clock",
