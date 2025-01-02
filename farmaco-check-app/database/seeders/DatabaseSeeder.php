@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()
-            ->count(4)
+            ->count(15)
             ->create()
             ->each(function ($user) {
                 $user->assignRole('doctor');
