@@ -21,7 +21,7 @@ final class UserTable extends PowerGridComponent
         return [
             PowerGrid::header()
                 ->showSearchInput()
-                ->showToggleColumns(), 
+                ->showToggleColumns(),
             PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -48,7 +48,7 @@ final class UserTable extends PowerGridComponent
             ->add('crated_at')
             ->add('created_at_format', function ($user) {
                 return Carbon::parse($user->created_at)->format('d/m/Y H:i');
-            }); 
+            });
     }
 
     public function columns(): array
@@ -108,16 +108,4 @@ final class UserTable extends PowerGridComponent
                 ->dispatch('delete', ['rowId' => $row->id]),
                 ];
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }

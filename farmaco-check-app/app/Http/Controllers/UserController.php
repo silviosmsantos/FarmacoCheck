@@ -22,7 +22,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {        
+    {
         // Verifica se o usuário autenticado tem a permissão de superadmin
         if (auth()->user()->hasRole('superadmin')) {
 
