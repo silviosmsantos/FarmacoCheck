@@ -4,18 +4,11 @@
             Adicionar Usuário
         </h2>
     </x-slot>
-    
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                
-                <!-- Mensagem de Sucesso -->
-                @if (session()->has('message'))
-                    <div class="mb-4 text-green-500">
-                        {{ session('message') }}
-                    </div>
-                @endif
-
+            
                 <form action="{{ route('users.store') }}" method="POST" class="space-y-6">
                     @csrf
                     <div>
@@ -43,14 +36,13 @@
                     </div>
 
                     <div class="mt-4">
-                    <x-input-label for="role" :value="'Cargo'" />
-                    <select name="role" id="role" class="block mt-1 w-full">
-                        <option value="admin">Admin</option>
-                        <option value="superadmin">Super Admin</option>
-                    </select>
-                    <x-input-error :messages="$errors->get('role')" class="mt-2" />
-                </div>
-
+                        <x-input-label for="role" :value="'Cargo'" />
+                        <select name="role" id="role" class="block mt-1 w-full">
+                            <option value="admin">Admin</option>
+                            <option value="superadmin">Super Admin</option>
+                        </select>
+                        <x-input-error :messages="$errors->get('role')" class="mt-2" />
+                    </div>
 
                     <div class="flex items-center justify-end mt-4">
                         <x-primary-button type="submit" class="ms-4">

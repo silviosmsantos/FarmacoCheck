@@ -23,9 +23,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // Verifica se o usuário autenticado tem a permissão de superadmin
         if (auth()->user()->hasRole('superadmin')) {
-
             $input = $request->validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
@@ -41,12 +39,12 @@ class UserController extends Controller
 
             $user->assignRole($request->role);
 
-            session()->flash('message', 'Usuário criado com sucesso!');
-
-            return redirect()->route('users');
-
+            // Mensagem de sucesso
+            return redirect()->route('users')->with('message', 'Usuário criado com sucesso!');
         } else {
-            return redirect()->route('home')->with('error', 'Você não tem permissão para criar usuários.');
+            // Caso o usuário não tenha permissão
+            return redirect()->route('home')->with('message', 'Você não tem permissão para criar usuários.');
         }
     }
+
 }
