@@ -1,0 +1,1 @@
+<x-icon name="pencil-square" class="w-4 h-4" solid/>
