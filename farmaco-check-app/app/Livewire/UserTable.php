@@ -123,7 +123,7 @@ final class UserTable extends PowerGridComponent
                     ->icon('default-delete-icon')
                     ->class('bg-red-500 hover:bg-red-700 text-white px-2 py-1 rounded flex items-center')
                     ->tooltip('Clique para excluir o registro ID: '.$row->id)
-                    ->dispatch('users.destroy', ['user' => $row->id]),
+                    ->route('users.destroy', ['user' => $row->id]),
             ];
         }
 
