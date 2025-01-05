@@ -73,7 +73,7 @@ final class UserTable extends PowerGridComponent
             Column::make('Nome', 'name')
                 ->sortable()
                 ->searchable(),
-                        
+
             Column::make('Cargo', 'role'),
 
             Column::make('Email', 'email')
@@ -83,7 +83,7 @@ final class UserTable extends PowerGridComponent
             Column::make('CRM', 'crm')
                 ->sortable()
                 ->searchable(),
-    
+
             Column::make('Criado em', 'created_at_format')
                 ->sortable(),
 
@@ -123,7 +123,7 @@ final class UserTable extends PowerGridComponent
                     ->icon('default-delete-icon')
                     ->class('bg-red-500 hover:bg-red-700 text-white px-2 py-1 rounded flex items-center')
                     ->tooltip('Clique para excluir o registro ID: '.$row->id)
-                    ->route('users.destroy', ['user' => $row->id]),
+                    ->route('users.delete', ['user' => $row->id]),
             ];
         }
 
