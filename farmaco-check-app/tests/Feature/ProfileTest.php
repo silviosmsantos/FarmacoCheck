@@ -2,9 +2,13 @@
 
 use App\Models\User;
 use Livewire\Volt\Volt;
+use Spatie\Permission\Models\Role;
 
 test('profile information can be updated', function () {
     $user = User::factory()->create();
+    $role = Role::create(['name' => 'doctor']);
+
+    $user->assignRole('doctor');
 
     $this->actingAs($user);
 
@@ -18,14 +22,19 @@ test('profile information can be updated', function () {
         ->assertNoRedirect();
 
     $user->refresh();
-
     $this->assertSame('Test User', $user->name);
     $this->assertSame('test@example.com', $user->email);
+
+    $this->assertAuthenticatedAs($user);
+    $this->assertTrue($user->hasRole('doctor'));
     $this->assertNull($user->email_verified_at);
 });
 
 test('email verification status is unchanged when the email address is unchanged', function () {
+
     $user = User::factory()->create();
+    $role = Role::create(['name' => 'doctor']);
+    $user->assignRole('doctor');
 
     $this->actingAs($user);
 
@@ -39,6 +48,7 @@ test('email verification status is unchanged when the email address is unchanged
         ->assertNoRedirect();
 
     $this->assertNotNull($user->refresh()->email_verified_at);
+    $this->assertTrue($user->hasRole('doctor'));
 });
 
 test('user can delete their account', function () {

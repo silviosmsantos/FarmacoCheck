@@ -72,12 +72,12 @@ new class extends Component
             Atualize as informações do perfil e o endereço de e-mail da sua conta.
         </p>
 
-        <div class="mt-4 bg-emerald-100 rounded-lg shadow-md p-6">
+        <!-- <div class="mt-4 bg-emerald-100 rounded-lg shadow-md p-6">
             <h3 class="text-lg font-medium text-gray-800">
                 <span class="font-semibold">Cargo: </span> 
                 <span class="text-gray-600">{{ auth()->user()->roles->first()->name }}</span>
             </h3>
-        </div>
+        </div> -->
     </header>
 
     <form wire:submit="updateProfileInformation" class="mt-6 space-y-6">
