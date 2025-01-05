@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -21,7 +21,6 @@ return new class extends Migration
      * from the `config/permission.php` file, throwing exceptions if
      * configurations are missing or not correctly loaded.
      *
-     * @return void
      * @throws \Exception
      */
     public function up(): void
@@ -147,7 +146,6 @@ return new class extends Migration
      * created in the `up()` method: 'permissions', 'roles', 'model_has_permissions',
      * 'model_has_roles', and 'role_has_permissions'.
      *
-     * @return void
      * @throws \Exception
      */
     public function down(): void

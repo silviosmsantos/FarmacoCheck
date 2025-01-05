@@ -2,7 +2,7 @@
 
 use App\Models\User;
 use Livewire\Volt\Volt;
- 
+
 test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
