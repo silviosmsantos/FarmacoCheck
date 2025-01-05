@@ -58,7 +58,7 @@ class UserController extends Controller
             // Validação dos dados enviados no formulário de edição
             $input = $request->validate([
                 'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $user->id],
+                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,'.$user->id],
                 'password' => ['nullable', 'string', 'confirmed', Rules\Password::defaults()],
                 'role' => 'required|in:admin,superadmin',
             ]);
@@ -80,15 +80,19 @@ class UserController extends Controller
         }
     }
 
-    public function delete($user)
+    public function delete(User $user)
     {
         return view('users.delete', compact('user'));
     }
 
-    public function destroy(User $user){
+    public function destroy(User $user)
+    {
         if (auth()->user()->hasRole('superadmin')) {
             $user->delete();
-            return back()->with('message', 'Usuário excluido com sucesso!');
+
+            return redirect()->route('users')->with('message', 'Usuário excluido com sucesso!');
+        }else {
+            return redirect()->route('/users')->with('message', 'Você não tem permissão para excluir usuários.');
         }
     }
 }

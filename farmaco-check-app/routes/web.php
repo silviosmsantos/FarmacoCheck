@@ -14,7 +14,7 @@ Route::get('/users/create', [UserController::class, 'create'])->middleware(['aut
 Route::post('/users/create', [UserController::class, 'store'])->middleware(['auth', 'verified', 'can:manage users'])->name('users.store');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'verified', 'can:manage users'])->name('users.edit');
 Route::put('/users/{user}/edit', [UserController::class, 'update'])->middleware(['auth', 'verified', 'can:manage users'])->name('users.update');
+Route::get('/users/{user}', [UserController::class, 'delete'])->middleware(['auth', 'verified', 'can:manage users'])->name('users.delete');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware(['auth', 'verified', 'can:manage users'])->name('users.destroy');
-
 
 require __DIR__.'/auth.php';
