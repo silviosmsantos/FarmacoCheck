@@ -14,20 +14,19 @@ use Spatie\Permission\Traits\HasRoles;
  * class from Laravel, meaning it can be used for authentication purposes. The model
  * also implements the `HasRoles` trait from the Spatie package to handle roles and
  * permissions.
- *
- * @package App\Models
  */
 class User extends Authenticatable
 {
-    /** 
+    /**
      * The traits that should be used by this class.
      *
      * @var array<int, string>
+     *
      * @uses HasFactory<\Database\Factories\UserFactory>
      * @uses Notifiable
      * @uses HasRoles
      */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -61,7 +60,7 @@ class User extends Authenticatable
     /**
      * Get the attributes that should be cast.
      *
-     * This method allows attributes to be cast to specific types. 
+     * This method allows attributes to be cast to specific types.
      * For example, the `email_verified_at` field is cast to a `datetime` object,
      * and the `password` field is cast to be `hashed`, which helps in maintaining
      * proper data types and security.

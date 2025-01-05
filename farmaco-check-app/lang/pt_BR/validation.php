@@ -57,10 +57,10 @@ return [
     'file' => 'O campo :attribute deve ser um arquivo.',
     'filled' => 'O campo :attribute deve ter um valor.',
     'gt' => [
-    'array' => 'O campo :attribute deve ter mais de :value itens.',
-    'file' => 'O campo :attribute deve ser maior que :value kilobytes.',
-    'numeric' => 'O campo :attribute deve ser maior que :value.',
-    'string' => 'O campo :attribute deve ser maior que :value caracteres.',
+        'array' => 'O campo :attribute deve ter mais de :value itens.',
+        'file' => 'O campo :attribute deve ser maior que :value kilobytes.',
+        'numeric' => 'O campo :attribute deve ser maior que :value.',
+        'string' => 'O campo :attribute deve ser maior que :value caracteres.',
     ],
     'gte' => [
         'array' => 'O campo :attribute deve ter :value itens ou mais.',
@@ -160,7 +160,6 @@ return [
     'url' => 'O campo :attribute deve ser uma URL válida.',
     'ulid' => 'O campo :attribute deve ser um ULID válido.',
     'uuid' => 'O campo :attribute deve ser um UUID válido.',
-
 
     /*
     |--------------------------------------------------------------------------
