@@ -91,7 +91,7 @@ class UserController extends Controller
             $user->delete();
 
             return redirect()->route('users')->with('message', 'Usuário excluido com sucesso!');
-        }else {
+        } else {
             return redirect()->route('/users')->with('message', 'Você não tem permissão para excluir usuários.');
         }
     }
