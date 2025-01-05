@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            RolesAndPermissionsSeeder::class
+            RolesAndPermissionsSeeder::class,
         ]);
 
         User::factory()
@@ -30,14 +30,14 @@ class DatabaseSeeder extends Seeder
             ->each(function ($user) {
                 $user->assignRole('doctor');
             });
-        
+
         User::factory()
             ->count(2)
             ->create()
             ->each(function ($user) {
                 $user->assignRole('admin');
             });
-        
+
         User::factory()
             ->count(2)
             ->create()

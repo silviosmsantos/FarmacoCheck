@@ -63,14 +63,21 @@ new class extends Component
 }; ?>
 
 <section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
+    <header class="p-6">
+        <h2 class="text-2xl font-semibold text-gray-900">
             Informações do Perfil
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
+        <p class="mt-2 text-sm text-gray-600">
             Atualize as informações do perfil e o endereço de e-mail da sua conta.
         </p>
+
+        <!-- <div class="mt-4 bg-emerald-100 rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-medium text-gray-800">
+                <span class="font-semibold">Cargo: </span> 
+                <span class="text-gray-600">{{ auth()->user()->roles->first()->name }}</span>
+            </h3>
+        </div> -->
     </header>
 
     <form wire:submit="updateProfileInformation" class="mt-6 space-y-6">

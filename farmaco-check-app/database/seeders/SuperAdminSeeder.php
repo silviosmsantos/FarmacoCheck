@@ -14,14 +14,14 @@ class SuperAdminSeeder extends Seeder
      */
     public function run(): void
     {
-       $user = User::factory()->create([
-           'name' => 'Silvio Martins Santos',
-           'email' => 'silviosmsantos@gmail.com',
-           'password' => Hash::make('password'),
-       ]);
+        $user = User::factory()->create([
+            'name' => 'Silvio Martins Santos',
+            'email' => 'silviosmsantos@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
 
-       $role = Role::firstOrCreate(['name' => 'superadmin']);
+        $role = Role::firstOrCreate(['name' => 'superadmin']);
 
-       $user->assignRole($role);
+        $user->assignRole($role);
     }
 }

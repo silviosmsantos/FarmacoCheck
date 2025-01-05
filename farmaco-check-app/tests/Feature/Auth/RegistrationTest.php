@@ -1,10 +1,10 @@
 <?php
 
-use Spatie\Permission\Models\Role;
 use Livewire\Volt\Volt;
+use Spatie\Permission\Models\Role;
 
 test('new users can register', function () {
-    
+
     Role::create(['name' => 'doctor', 'guard_name' => 'web']);
     Role::create(['name' => 'superadmin', 'guard_name' => 'web']);
 
