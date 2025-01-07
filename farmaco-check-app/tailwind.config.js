@@ -29,6 +29,10 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            ringColor: {
+                primary: colors.emerald[500], // ou qualquer cor desejada
+                secondary: colors.blue[500],
+            },
         },
     },
 

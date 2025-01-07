@@ -34,7 +34,7 @@ new class extends Component
                         Dashboard
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('medicines')" wire:navigate>
+                    <x-nav-link :href="route('medicines')" :active="request()->routeIs('medicines')" wire:navigate>
                         Medicamentos
                     </x-nav-link>
 
