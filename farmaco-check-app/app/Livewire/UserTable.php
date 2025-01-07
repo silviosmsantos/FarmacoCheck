@@ -46,7 +46,9 @@ final class UserTable extends PowerGridComponent
             ->add('crm')
             ->add('crated_at')
             ->add('created_at_format', function ($user) {
-                return Carbon::parse($user->created_at)->format('d/m/Y H:i');
+                return Carbon::parse($user->created_at)
+                    ->timezone('America/Sao_Paulo')
+                    ->format('d/m/Y H:i');
             })
             ->add('role', function ($user) {
                 $roleName = $user->roles->first()->name ?? 'Sem cargo';
@@ -108,6 +110,7 @@ final class UserTable extends PowerGridComponent
         $user = auth()->user();
 
         if ($user->hasRole('superadmin')) {
+
             return [
                 Button::add('edit')
                     ->slot('<i class="fas fa-edit"></i>Editar')
@@ -125,6 +128,18 @@ final class UserTable extends PowerGridComponent
                     ->tooltip('Clique para excluir o registro ID: '.$row->id)
                     ->route('users.delete', ['user' => $row->id]),
             ];
+        }
+        
+        else if ($user->hasRole('admin')) {
+            return [
+                Button::add('View')
+                    ->slot('<i class="fas fa-edit"></i>Vizualizar')
+                    ->id()
+                    ->icon('default-view-icon')
+                    ->class('bg-sky-600 hover:bg-sky-800 text-white px-2 py-1 rounded flex items-center')
+                    ->tooltip('Clique para vew o registro ID: '.$row->id)
+                    ->dispatch('view', ['rowId' => $row->id]),
+                ];  
         }
 
         // adicionar um botão aqui para admins ver infos sobre usuários.

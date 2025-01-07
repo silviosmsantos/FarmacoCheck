@@ -11,8 +11,8 @@ class Medicine extends Model
 
     protected $fillable = [
         'name',
-        'active_ingredients',
-        'terapeutic_class',
+        'active_ingredient',
+        'therapeutic_class',
         'dosage',
         'manufacturer',
     ];
@@ -20,7 +20,7 @@ class Medicine extends Model
     public function interactions()
     {
         return $this->belongsToMany(Medicine::class, 'interactions', 'medicine_id', 'related_medicine_id')
-                    ->withPivot('causes', 'severity', 'source')
-                    ->withTimestamps();
+            ->withPivot('causes', 'severity', 'source')
+            ->withTimestamps();
     }
 }

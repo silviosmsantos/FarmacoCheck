@@ -20,7 +20,7 @@ class MedicineFactory extends Factory
             'name' => $this->faker->word,
             'active_ingredient' => $this->faker->word,
             'therapeutic_class' => $this->faker->word,
-            'dosage' => $this->faker->randomElement(['10mg', '20mg', '25mg', '30mg', '40mg' ,'50mg']),
+            'dosage' => $this->faker->randomElement(['10mg', '20mg', '25mg', '30mg', '40mg', '50mg']),
             'manufacturer' => $this->faker->company,
         ];
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,5 +17,12 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['
 Route::put('/users/{user}/edit', [UserController::class, 'update'])->middleware(['auth', 'verified', 'can:manage users'])->name('users.update');
 Route::get('/users/{user}', [UserController::class, 'delete'])->middleware(['auth', 'verified', 'can:manage users'])->name('users.delete');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware(['auth', 'verified', 'can:manage users'])->name('users.destroy');
+
+// Medicines routes
+Route::get('/medicines', [MedicineController::class, 'index'])->middleware(['auth', 'verified', 'can:view medicines'])->name('medicines');
+Route::get('/medicines/create', [MedicineController::class, 'create'])
+    ->middleware(['auth', 'verified', 'can:create medicines'])->name('medicines.create');
+Route::post('/medicines/create', [MedicineController::class, 'store'])
+    ->middleware(['auth', 'verified', 'can:create medicines'])->name('medicines.store');
 
 require __DIR__.'/auth.php';
