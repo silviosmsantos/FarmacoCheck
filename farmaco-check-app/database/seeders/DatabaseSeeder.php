@@ -24,6 +24,10 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
         ]);
 
+        $this->call([
+            MedicineSeeder::class,
+        ]);
+
         User::factory()
             ->count(15)
             ->create()
