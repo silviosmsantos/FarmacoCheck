@@ -111,7 +111,15 @@ final class MedicinesTable extends PowerGridComponent
                     ->icon('default-edit-icon')
                     ->class('bg-sky-600 hover:bg-sky-800 text-white px-2 py-1 rounded flex items-center')
                     ->tooltip('Clique para editar o registro ID: '.$row->id)
-                    ->route('medicines.edit', ['medicine' => $row->id])
+                    ->route('medicines.edit', ['medicine' => $row->id]),
+            
+                Button::add('delete')
+                    ->slot('<i class="fas fa-trash-alt"></i>Excluir')
+                    ->id()
+                    ->icon('default-delete-icon')
+                    ->class('bg-red-500 hover:bg-red-700 text-white px-2 py-1 rounded flex items-center')
+                    ->tooltip('Clique para excluir o registro ID: '.$row->id)
+                    ->route('medicines.delete', ['medicine' => $row->id]),
             ];
         }
     }
