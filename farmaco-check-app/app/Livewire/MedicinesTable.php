@@ -28,7 +28,7 @@ final class MedicinesTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return DB::table('Medicines');
+        return DB::table('medicines');
     }
 
     public function fields(): PowerGridFields
