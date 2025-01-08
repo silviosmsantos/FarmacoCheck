@@ -20,9 +20,10 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware([
 
 // Medicines routes
 Route::get('/medicines', [MedicineController::class, 'index'])->middleware(['auth', 'verified', 'can:view medicines'])->name('medicines');
-Route::get('/medicines/create', [MedicineController::class, 'create'])
-    ->middleware(['auth', 'verified', 'can:create medicines'])->name('medicines.create');
-Route::post('/medicines/create', [MedicineController::class, 'store'])
-    ->middleware(['auth', 'verified', 'can:create medicines'])->name('medicines.store');
+Route::get('/medicines/create', [MedicineController::class, 'create'])->middleware(['auth', 'verified', 'can:create medicines'])->name('medicines.create');
+Route::post('/medicines/create', [MedicineController::class, 'store'])->middleware(['auth', 'verified', 'can:create medicines'])->name('medicines.store');
+Route::get('/medicines/{medicine}/edit', [MedicineController::class, 'edit'])->middleware(['auth', 'verified', 'can:edit medicines'])->name('medicines.edit');
+Route::put('/medicones/{medicine}/edit', [MedicineController::class, 'update'])->middleware(['auth', 'verified', 'can:edit medicines'])->name('medicines.update');
+
 
 require __DIR__.'/auth.php';
