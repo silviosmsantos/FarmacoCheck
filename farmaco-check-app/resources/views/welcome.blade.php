@@ -29,9 +29,15 @@
                 <img src ='capa.jpg' class="object-cover h-full !w-full "/>
             </div>
             <div class="flex  h-screen items-center justify-center">
-                <div class="text-center">
-                    <x-application-logo-text class="w-80 h-auto fill-current text-teal-600 mb-8" />
-                    <x-button primary xl href="{{ route('login') }}" class="px-8 py-4 text-lg">
+                <div class="flex gap-4 flex-col items-center justify-center">
+                    <x-application-logo-text class="w-80 h-auto fill-current text-teal-600 " />
+                    <div class="flex gap-2 flex-col max-w-[500px] items-center text-center">
+                        <h1 class="font-bold text-lg text-neutral-800">
+                            Bem-vindo ao FarmacoCheck!
+                        </h1>
+                        <p class="font-normal text-base text-neutral-600">Verifique possíveis interações entre medicamentos de forma rápida e confiável. Mais segurança para suas decisões clínicas!</p>
+                    </div>
+                    <x-button primary xl href="{{ route('login') }}" class="px-8 py-4 text-lg mt-6">
                         <strong>Conheça Agora</strong>
                     </x-button>
                 </div>
