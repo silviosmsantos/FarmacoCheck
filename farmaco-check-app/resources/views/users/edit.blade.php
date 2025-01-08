@@ -18,7 +18,9 @@
             @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <!-- Formulário de edição -->
+                
+            <livewire:display-id :id="$user->id" label="Identificador (ID): " />
+            <!-- Formulário de edição -->
                 <form action="{{ route('users.edit', $user->id) }}" method="POST" class="space-y-6">
                     @csrf
                     @method('PUT') <!-- Método PUT para atualização -->

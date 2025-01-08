@@ -85,14 +85,23 @@ class UserController extends Controller
         return view('users.delete', compact('user'));
     }
 
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user)
     {
         if (auth()->user()->hasRole('superadmin')) {
+            
+            $request->validate([
+                'confirmation' => 'required|String',
+            ]);
+            
+            if($request->confirmation != $user->name){
+                return back()->withErrors(['confirmation' => 'O nome digitado não corresponde ao usuário.']);
+            }
+
             $user->delete();
 
             return redirect()->route('users')->with('message', 'Usuário excluido com sucesso!');
         } else {
-            return redirect()->route('/users')->with('message', 'Você não tem permissão para excluir usuários.');
+            return redirect()->route('users')->with('message', 'Você não tem permissão para excluir usuários.');
         }
     }
 }
