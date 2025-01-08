@@ -8,10 +8,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <!-- Formulário de exclusão -->
                 <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="space-y-6">
                     @csrf
-                    @method('DELETE') <!-- Método DELETE para exclusão -->
+                    @method('DELETE')
                     
                     <p>Você tem certeza que deseja excluir o usuário <strong>{{ $user->name }}</strong>?</p>
 
