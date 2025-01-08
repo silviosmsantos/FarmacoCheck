@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media (max-width: 768px) {
+    .grid-welcome {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-welcome .image-wrapper{
+        display: none;
+    }
+}

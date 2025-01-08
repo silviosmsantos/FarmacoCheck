@@ -23,9 +23,9 @@
             @endif
         </div>
 
-        <div class="grid grid-cols-[1fr_1fr] gap-16 flex-1 items-center justify-center">
+        <div class="grid grid-cols-[1fr_1fr] md  gap-16 flex-1 items-center justify-center grid-welcome">
 
-            <div class=" flex justify-center items-center h-screen w-full">
+            <div class=" flex justify-center items-center h-screen w-full image-wrapper ">
                 <img src ='capa.jpg' class="object-cover h-full !w-full "/>
             </div>
             <div class="flex  h-screen items-center justify-center">
