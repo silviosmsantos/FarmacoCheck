@@ -103,7 +103,7 @@ final class MedicinesTable extends PowerGridComponent
 
     public function actions($row): array
     {
-        if(auth()->user()->hasRole(['superadmin', 'admin'])) {
+        if (auth()->user()->hasRole(['superadmin', 'admin'])) {
             return [
                 Button::add('edit')
                     ->slot('<i class="fas fa-edit"></i>Editar')
@@ -112,7 +112,7 @@ final class MedicinesTable extends PowerGridComponent
                     ->class('bg-sky-600 hover:bg-sky-800 text-white px-2 py-1 rounded flex items-center')
                     ->tooltip('Clique para editar o registro ID: '.$row->id)
                     ->route('medicines.edit', ['medicine' => $row->id]),
-            
+
                 Button::add('delete')
                     ->slot('<i class="fas fa-trash-alt"></i>Excluir')
                     ->id()

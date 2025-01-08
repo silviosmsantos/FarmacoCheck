@@ -63,7 +63,8 @@ class MedicineController extends Controller
             $medicine->update($input);
 
             return redirect()->route('medicines')->with('message', 'Medicamento atualizado com sucesso!');
-        } 
+        }
+
         return redirect()->route('login')->with('message', 'Você não tem permissão para editar usuários.');
     }
 
@@ -75,19 +76,20 @@ class MedicineController extends Controller
     public function destroy(Request $request, Medicine $medicine)
     {
         if (auth()->user()->hasRole(['superadmin', 'admin'])) {
-            
+
             $request->validate([
                 'confirmation' => 'required|numeric',
             ]);
-        
+
             if ($request->confirmation != $medicine->id) {
                 return back()->withErrors(['confirmation' => 'O ID digitado não corresponde ao medicamento.']);
             }
-        
+
             $medicine->delete();
 
             return redirect()->route('medicines')->with('message', 'Medicamento excluido com sucesso!');
-        } 
+        }
+
         return redirect()->route('medicines')->with('message', 'Você não tem permissão para excluir medicametos.');
     }
 }
