@@ -103,24 +103,16 @@ final class MedicinesTable extends PowerGridComponent
 
     public function actions($row): array
     {
-        return [
-            Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id]),
-        ];
+        if(auth()->user()->hasRole(['superadmin', 'admin'])) {
+            return [
+                Button::add('edit')
+                    ->slot('<i class="fas fa-edit"></i>Editar')
+                    ->id()
+                    ->icon('default-edit-icon')
+                    ->class('bg-sky-600 hover:bg-sky-800 text-white px-2 py-1 rounded flex items-center')
+                    ->tooltip('Clique para editar o registro ID: '.$row->id)
+                    ->route('medicines.edit', ['medicine' => $row->id])
+            ];
+        }
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }
