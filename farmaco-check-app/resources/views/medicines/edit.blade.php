@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Editar medicamento ID: {{ $medicine->id }}
+            Editar medicamento
         </h2>
     </x-slot>
 
@@ -17,6 +17,9 @@
         @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+            
+            <livewire:display-id :id="$medicine->id" label="Identificador (ID): " />
+
                 <!-- Formulário de edição -->
                 <form action="{{ route('medicines.update', $medicine->id) }}" method="POST" class="space-y-6">
                     @csrf
