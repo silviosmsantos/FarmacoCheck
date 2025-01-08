@@ -88,12 +88,12 @@ class UserController extends Controller
     public function destroy(Request $request, User $user)
     {
         if (auth()->user()->hasRole('superadmin')) {
-            
+
             $request->validate([
                 'confirmation' => 'required|String',
             ]);
-            
-            if($request->confirmation != $user->name){
+
+            if ($request->confirmation != $user->name) {
                 return back()->withErrors(['confirmation' => 'O nome digitado não corresponde ao usuário.']);
             }
 

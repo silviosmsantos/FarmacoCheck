@@ -128,9 +128,7 @@ final class UserTable extends PowerGridComponent
                     ->tooltip('Clique para excluir o registro ID: '.$row->id)
                     ->route('users.delete', ['user' => $row->id]),
             ];
-        }
-        
-        else if ($user->hasRole('admin')) {
+        } elseif ($user->hasRole('admin')) {
             return [
                 Button::add('View')
                     ->slot('<i class="fas fa-edit"></i>Vizualizar')
@@ -139,7 +137,7 @@ final class UserTable extends PowerGridComponent
                     ->class('bg-sky-600 hover:bg-sky-800 text-white px-2 py-1 rounded flex items-center')
                     ->tooltip('Clique para vew o registro ID: '.$row->id)
                     ->dispatch('view', ['rowId' => $row->id]),
-                ];  
+            ];
         }
 
         // adicionar um botão aqui para admins ver infos sobre usuários.

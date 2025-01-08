@@ -25,11 +25,7 @@
                     </h1>
                     @can('create medicines')
                         <strong>
-                            <x-button 
-                                label="Adicionar novo medicamento"
-                                icon="plus"
-                                :href="route('medicines.create')"
-                            />
+                            <x-button label="Adicionar novo medicamento" icon="plus" :href="route('medicines.create')"/>
                         </strong>
                     @endcan
                 </div>
