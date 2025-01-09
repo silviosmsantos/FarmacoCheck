@@ -23,7 +23,7 @@
             @endif
         </div>
 
-        <div class="grid grid-cols-[1fr_1fr] md  gap-16 flex-1 items-center justify-center grid-welcome">
+        <div class="grid grid-cols-[1fr_1fr] md  gap-4 flex-1 items-center justify-center grid-welcome">
 
             <div class=" flex justify-center items-center h-screen w-full image-wrapper ">
                 <img src ='capa.jpg' class="object-cover h-full !w-full "/>
