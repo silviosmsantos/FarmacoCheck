@@ -17,10 +17,13 @@ class Medicine extends Model
         'manufacturer',
     ];
 
-    public function interactions()
+    public function interactionsMedicine1()
     {
-        return $this->belongsToMany(Medicine::class, 'interactions', 'medicine_id', 'related_medicine_id')
-            ->withPivot('causes', 'severity', 'source')
-            ->withTimestamps();
+        return $this->hasMany(interaction::class, 'medicine_1_id');;
+    }
+
+    public function interactionsMedicine2()
+    {
+        return $this->hasMany(interaction::class, 'medicine_2_id');
     }
 }

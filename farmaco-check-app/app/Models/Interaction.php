@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Interations extends Model
+class interaction extends Model
 {
     use HasFactory;
 
-    protected $table = 'interations';
+    protected $table = 'interactions';
 
     protected $fillable = [
         'medicine_id',
@@ -18,4 +18,14 @@ class Interations extends Model
         'severity',
         'source',
     ];
+
+    public function medicines1()
+    {
+        return $this->belongsTo(Medicine::class, 'medicine_1_id');
+    }
+
+    public function medicines2()
+    {
+        return $this->belongsTo(Medicine::class, 'medicine_2_id');
+    }
 }

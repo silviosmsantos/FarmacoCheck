@@ -13,19 +13,13 @@ return new class extends Migration
     {
         Schema::create('interactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('medicine_id')
-                ->constrained('medicines')
-                ->onDelete('cascade');
-            $table->foreignId('related_medicine_id')
-                ->constrained('medicines')
-                ->onDelete('cascade');
+            $table->foreignId('medicine_1_id')->constrained('medicines')->onDelete('cascade');
+            $table->foreignId('medicine_2_id')->constrained('medicines')->onDelete('cascade');
+            $table->enum('severity', ['grave', 'moderada', 'leve']);
             $table->text('causes');
-            $table->enum('severity', ['Leve', 'Moderada', 'Grave']);
             $table->string('source');
             $table->timestamps();
-
-            $table->unique(['medicine_id', 'related_medicine_id']);
-        });
+        });        
     }
 
     /**
