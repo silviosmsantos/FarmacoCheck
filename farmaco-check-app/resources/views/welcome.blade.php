@@ -19,14 +19,14 @@
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 min-h-screen flex flex-col">
         <div class="absolute top-4 right-6">
             @if (Route::has('login'))
-                <livewire:welcome.navigation />
+            <livewire:welcome.navigation />
             @endif
         </div>
 
         <div class="grid grid-cols-[1fr_1fr] md  gap-4 flex-1 items-center justify-center grid-welcome">
 
             <div class=" flex justify-center items-center h-screen w-full image-wrapper ">
-                <img src ='capa.jpg' class="object-cover h-full !w-full "/>
+                <img src='capa.jpg' class="object-cover h-full !w-full " />
             </div>
             <div class="flex  h-screen items-center justify-center">
                 <div class="flex gap-4 flex-col items-center justify-center">
@@ -40,10 +40,19 @@
                     <x-button primary xl href="{{ route('login') }}" class="px-8 py-4 text-lg mt-6">
                         <strong>Conheça Agora</strong>
                     </x-button>
+
+                    <footer class=" dark:bg-gray-800 mt-20">
+                        <div class="w-full max-w-screen-xl mx-auto text-center">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">
+                                © 2023 
+                                <a href="https://github.com/silviosmsantos/FarmacoCheck" class="hover:underline">FarmacoCheck™</a>. 
+                                All Rights Reserved.
+                            </span>
+                        </div>
+                    </footer>
                 </div>
             </div>
         </div>
-
     </div>
 </body>
 

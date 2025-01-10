@@ -10,10 +10,9 @@
     @else
         <a
             href="{{ route('login') }}"
+            title="Login"
             class="rounded-md px-3  text-black/80 ring-1 ring-transparent transition hover:text-black/60 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
         >
-
-
         <x-icon name="user-circle" class="w-10 h-10" />
     </a>
 
@@ -22,7 +21,8 @@
 
                 <a
                     href="{{ route('register') }}"
-                    class="rounded-md px-3   ring-1 ring-transparent transition  focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                    title="Registrar-se"
+                    class="rounded-md px-3 ring-1 ring-transparent transition focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                 >
                     Registre-se
                 </a>
