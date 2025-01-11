@@ -6,18 +6,18 @@
     </x-slot>
 
     <div class="py-12">
-        @if (session('message'))
-        <div class="mb-4 max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
-            <x-alert
-                :title="session('message')"
-                :message="session('message')"
-                positive
-                squared
-                class="bg-green-500 text-white border-green-600 p-4"
-                icon="check-circle" />
-        </div>
-        @endif
-
+            @if (session('message'))
+                <div class="mb-4 max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
+                    <x-alert
+                        :title="session('message')" 
+                        :message="session('message')"
+                        positive
+                        squared
+                        class="bg-green-500 text-white border-green-600 p-4"
+                        icon="check-circle"
+                    />
+                </div>
+            @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <div class="flex justify-between items-center mb-8">
@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="p-4">
-                        <h5 class="mb-1 text-slate-800 text-xl font-semibold uppercase">
+                        <h5 class="mb-1 text-slate-800 text-lg font-semibold uppercase">
                             Gravidade:
                             <span class="font-bold {{ 
                     $interaction->severity == 'grave' ? 'text-red-600' :
@@ -60,20 +60,20 @@
                             </span>
                         </h5>
 
-                        <p class="text-slate-600 leading-normal font-light">
-                            <strong>Causas:</strong> {{ $interaction->causes }}
+                        <p class="text-slate-600 leading-normal font-light pt-4">
+                            <strong class="font-bold">Causas:</strong> {{ $interaction->causes }}
                         </p>
-                        <p class="text-slate-600 leading-normal font-light">
-                            <strong>Fonte:</strong> {{ $interaction->source }}
+                        <p class="text-slate-600 leading-normal font-light pt-4">
+                            <strong class="font-bold">Fonte:</strong> {{ $interaction->source }}
                         </p>
 
                         <div class="border-t border-slate-200 my-4"></div>
 
                         @can(['edit interactions', 'delete interactions'])
                         <div class="flex justify-end space-x-4">
-                            <x-button xs interaction:solid outline gray label="Editar" icon="pencil"
-                                :href="route('interactions', $interaction->id)" />
-                            <x-button xs interaction="negative" label="Excluir" icon="trash" class="bg-red-600"
+                            <x-button sm interaction:solid outline gray label="Editar" icon="pencil"
+                                :href="route('interactions.edit', $interaction->id)" />
+                            <x-button sm interaction="negative" label="Excluir" icon="trash" class="bg-red-600"
                                 :href="route('interactions', $interaction->id)" />
                         </div>
                         @endcan
