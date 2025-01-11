@@ -66,5 +66,11 @@ Route::get('/interactions/create', [InteractionsController::class, 'create'])
 
 Route::post('/interactions/create', [InteractionsController::class, 'store'])
     ->middleware(['auth', 'verified', 'can:create interactions'])->name('interactions.store');  
+
+Route::get('/interactions/{interaction}/edit', [InteractionsController::class, 'edit'])
+    ->middleware(['auth', 'verified', 'can:edit interactions'])->name('interactions.edit');
+
+Route::put('/interactions/{interaction}/edit', [InteractionsController::class, 'update'])
+    ->middleware(['auth', 'verified', 'can:edit interactions'])->name('interactions.update');
     
 require __DIR__.'/auth.php';    
