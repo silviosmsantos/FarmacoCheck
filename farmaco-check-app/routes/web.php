@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\interactionsController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -56,4 +57,14 @@ Route::get('/medicines/{medicine}/delete', [MedicineController::class, 'delete']
 Route::delete('/medicines/{medicine}/delete', [MedicineController::class, 'destroy'])
     ->middleware(['auth', 'verified', 'can:delete medicines'])->name('medicines.destroy');
 
-require __DIR__.'/auth.php';
+// interactions route
+Route::get('/interactions', [InteractionsController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('interactions');
+
+Route::get('/interactions/create', [InteractionsController::class, 'create'])
+    ->middleware(['auth', 'verified','can:create interactions'])->name('interactions.create');  
+
+Route::post('/interactions/create', [InteractionsController::class, 'store'])
+    ->middleware(['auth', 'verified', 'can:create interactions'])->name('interactions.store');  
+    
+require __DIR__.'/auth.php';    

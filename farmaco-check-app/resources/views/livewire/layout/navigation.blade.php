@@ -38,7 +38,7 @@ new class extends Component
                         Medicamentos
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('interations')" wire:navigate>
+                    <x-nav-link :href="route('interactions')" :active="request()->routeIs('interactions')" wire:navigate>
                         Interações
                     </x-nav-link>
 
