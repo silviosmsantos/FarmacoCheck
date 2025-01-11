@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\interactionsController;
+use App\Http\Controllers\InteractionsController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
