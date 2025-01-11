@@ -103,4 +103,28 @@ class InteractionsController extends Controller
         return redirect()->route('login')->with('message', 'Você não tem permissão para editar interações.');
     }
 
+    public function delete(Interaction $interaction)
+    {
+        $interaction = Interaction::with(['medicines1', 'medicines2'])->findOrFail($interaction->id);
+        return view('interactions.delete', compact('interaction'));
+    }
+
+    public function destroy(Request $request, Interaction $interaction)
+    {
+        if (auth()->user()->hasRole(['superadmin', 'admin'])) {
+
+            $request->validate([
+                'confirmation' => 'required|String',
+            ]);
+
+            if ($request->confirmation != $interaction->id) {
+                return back()->withErrors(['confirmation' => 'O ID digitado não corresponde ao ID da interação.']);
+            }
+
+            $interaction->delete();
+
+            return redirect()->route('interactions')->with('message', 'Interação excluida com sucesso!');
+        }
+        return redirect()->route('/login')->with('message', 'Você não tem permissão para excluir interações.');
+    }
 }
