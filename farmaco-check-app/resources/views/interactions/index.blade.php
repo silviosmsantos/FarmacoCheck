@@ -74,7 +74,7 @@
                             <x-button sm interaction:solid outline gray label="Editar" icon="pencil"
                                 :href="route('interactions.edit', $interaction->id)" />
                             <x-button sm interaction="negative" label="Excluir" icon="trash" class="bg-red-600"
-                                :href="route('interactions', $interaction->id)" />
+                                :href="route('interactions.delete', $interaction->id)" />
                         </div>
                         @endcan
                     </div>
