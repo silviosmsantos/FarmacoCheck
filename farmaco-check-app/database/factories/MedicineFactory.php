@@ -17,7 +17,7 @@ class MedicineFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word,
+            'name' => $this->faker->unique()->word,
             'active_ingredient' => $this->faker->word,
             'therapeutic_class' => $this->faker->word,
             'dosage' => $this->faker->randomElement(['10mg', '20mg', '25mg', '30mg', '40mg', '50mg']),

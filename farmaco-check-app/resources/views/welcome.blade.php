@@ -44,7 +44,7 @@
                     <footer class=" dark:bg-gray-800 mt-20">
                         <div class="w-full max-w-screen-xl mx-auto text-center">
                             <span class="text-sm text-gray-500 dark:text-gray-400">
-                                © 2023 
+                                © 2025 
                                 <a href="https://github.com/silviosmsantos/FarmacoCheck" class="hover:underline">FarmacoCheck™</a>. 
                                 All Rights Reserved.
                             </span>

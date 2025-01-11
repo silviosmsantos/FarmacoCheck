@@ -72,5 +72,11 @@ Route::get('/interactions/{interaction}/edit', [InteractionsController::class, '
 
 Route::put('/interactions/{interaction}/edit', [InteractionsController::class, 'update'])
     ->middleware(['auth', 'verified', 'can:edit interactions'])->name('interactions.update');
-    
+
+Route::get('/interactions/{interaction}/delete', [InteractionsController::class, 'delete'])
+    ->middleware(['auth', 'verified', 'can:delete interactions'])->name('interactions.delete');
+
+Route::delete('/interactions/{interaction}/delete', [InteractionsController::class, 'destroy'])
+    ->middleware(['auth', 'verified', 'can:delete interactions'])->name('interactions.destroy');
+
 require __DIR__.'/auth.php';    
