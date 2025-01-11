@@ -6,9 +6,32 @@
     </x-slot>
 
     <div class="py-12">
+        @if (session('message'))
+            <div class="mb-4 max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
+                <x-alert
+                    title="session('message')"
+                    :message="session('message')"
+                    positive squared class="bg-green-500 text-white border-green-600 p-4"
+                    icon="check-circle" />
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="mb-4 max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
+                <x-alert
+                    title="Erro(s) Encontrado(s)!"
+                    :message="'Por favor, corrija os seguintes erros:'"
+                    negative
+                    class="bg-red-100 border-red-400 text-red-700">
+                    <ul class="mt-2 list-disc list-inside text-sm text-red-700">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </x-alert>
+            </div>
+        @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-            
                 <form action="{{ route('interactions.store') }}" method="POST" class="space-y-6">
                     @csrf
 
@@ -17,7 +40,7 @@
                         <select id="medicine_1_id" name="medicine_1_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
                             <option value="" disabled selected>Selecione o primeiro medicamento</option>
                             @foreach($medicines as $medicine)
-                                <option value="{{ $medicine->id }}">{{ $medicine->name }}</option>
+                            <option value="{{ $medicine->id }}">{{ $medicine->name }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('medicine_1_id')" class="mt-2" />
@@ -28,7 +51,7 @@
                         <select id="medicine_2_id" name="medicine_2_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
                             <option value="" disabled selected>Selecione o segundo medicamento</option>
                             @foreach($medicines as $medicine)
-                                <option value="{{ $medicine->id }}">{{ $medicine->name }}</option>
+                            <option value="{{ $medicine->id }}">{{ $medicine->name }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('medicine_2_id')" class="mt-2" />
