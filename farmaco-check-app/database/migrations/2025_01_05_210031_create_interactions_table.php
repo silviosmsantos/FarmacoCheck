@@ -19,7 +19,9 @@ return new class extends Migration
             $table->text('causes');
             $table->string('source');
             $table->timestamps();
-        });        
+
+            $table->unique(['medicine_1_id', 'medicine_2_id']);
+        });
     }
 
     /**

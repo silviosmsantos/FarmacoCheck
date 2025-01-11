@@ -7,16 +7,15 @@
 
     <div class="py-12">
         @if (session('message'))
-            <div class="mb-4 max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
-                <x-alert
-                    :title="session('message')" 
-                    :message="session('message')"
-                    positive
-                    squared
-                    class="bg-green-500 text-white border-green-600 p-4"
-                    icon="check-circle"
-                />
-            </div>
+        <div class="mb-4 max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
+            <x-alert
+                :title="session('message')"
+                :message="session('message')"
+                positive
+                squared
+                class="bg-green-500 text-white border-green-600 p-4"
+                icon="check-circle" />
+        </div>
         @endif
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-sm">
@@ -27,32 +26,63 @@
                     </h1>
 
                     @can('create interactions')
-                        <strong>
-                            <x-button secondary label="Adicionar uma nova interação" icon="plus" :href="route('medicines.create')" />
-                        </strong>
+                    <strong>
+                        <x-button secondary label="Adicionar uma nova interação" icon="plus" :href="route('interactions.create')" />
+                    </strong>
                     @endcan
                 </div>
 
-                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full">
-                    @foreach($interactions as $interaction)
-                        <div class="mx-3 mb-4 border-b border-slate-200 pt-3 pb-2 px-1">
-                            <span class="text-sm text-slate-600 font-medium">
-                                Interação entre: {{ $interaction->medicines1->name }} e {{ $interaction->medicines2->name }}
+                @foreach($interactions as $interaction)
+                <div class="relative flex flex-col my-6 bg-white shadow-lg border border-slate-300 rounded-lg w-full">
+                    
+                    <div class="mx-3 mb-4 border-b border-slate-200 pt-3 pb-2 px-1">
+                        <span class="text-sm text-slate-600 font-medium">
+                            Interação entre:
+                        </span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl text-slate-600 font-bold uppercase">
+                                {{ $interaction->medicines1->name }}
+                            </span>
+                            <span class="text-xl text-slate-500 font-medium">|</span>
+                            <span class="text-2xl text-slate-600 font-bold uppercase">
+                                {{ $interaction->medicines2->name }}
                             </span>
                         </div>
+                    </div>
 
-                        <div class="p-4">
-                            <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-                                Gravidade: {{ ucfirst($interaction->severity) }}
-                            </h5>
-                            <p class="text-slate-600 leading-normal font-light">
-                                Causas: {{ $interaction->causes }}
-                            </p>
-                            <p class="text-slate-600 leading-normal font-light">
-                                Fonte: {{ $interaction->source }}
-                            </p>
+                    <div class="p-4">
+                        <h5 class="mb-1 text-slate-800 text-xl font-semibold uppercase">
+                            Gravidade:
+                            <span class="font-bold {{ 
+                    $interaction->severity == 'grave' ? 'text-red-600' :
+                    ($interaction->severity == 'moderada' ? 'text-yellow-600' : 'text-green-600') }}">
+                                {{ ucfirst($interaction->severity) }}
+                            </span>
+                        </h5>
+
+                        <p class="text-slate-600 leading-normal font-light">
+                            <strong>Causas:</strong> {{ $interaction->causes }}
+                        </p>
+                        <p class="text-slate-600 leading-normal font-light">
+                            <strong>Fonte:</strong> {{ $interaction->source }}
+                        </p>
+
+                        <div class="border-t border-slate-200 my-4"></div>
+
+                        @can(['edit interactions', 'delete interactions'])
+                        <div class="flex justify-end space-x-4">
+                            <x-button xs interaction:solid outline gray label="Editar" icon="pencil"
+                                :href="route('interactions', $interaction->id)" />
+                            <x-button xs interaction="negative" label="Excluir" icon="trash" class="bg-red-600"
+                                :href="route('interactions', $interaction->id)" />
                         </div>
-                    @endforeach
+                        @endcan
+                    </div>
+                    
+                </div>
+                @endforeach
+                <div class="mt-6">
+                    {{ $interactions->links() }}
                 </div>
             </div>
         </div>

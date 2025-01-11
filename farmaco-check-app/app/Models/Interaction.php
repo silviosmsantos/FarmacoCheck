@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class interaction extends Model
+class Interaction extends Model
 {
     use HasFactory;
 
     protected $table = 'interactions';
 
     protected $fillable = [
-        'medicine_id',
-        'related_medicine_id',
+        'medicine_1_id',
+        'medicine_2_id',
         'causes',
         'severity',
         'source',

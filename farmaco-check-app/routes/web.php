@@ -58,9 +58,13 @@ Route::delete('/medicines/{medicine}/delete', [MedicineController::class, 'destr
     ->middleware(['auth', 'verified', 'can:delete medicines'])->name('medicines.destroy');
 
 // interactions route
-Route::get('/interactions', [interactionsController::class, 'index'])->middleware(['auth', 'verified'])->name('interactions');
+Route::get('/interactions', [InteractionsController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('interactions');
 
-Route::get('/interactions/create', [interactionsController::class, 'create'])
+Route::get('/interactions/create', [InteractionsController::class, 'create'])
     ->middleware(['auth', 'verified','can:create interactions'])->name('interactions.create');  
 
+Route::post('/interactions/create', [InteractionsController::class, 'store'])
+    ->middleware(['auth', 'verified', 'can:create interactions'])->name('interactions.store');  
+    
 require __DIR__.'/auth.php';    
