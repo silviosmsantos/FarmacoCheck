@@ -19,7 +19,7 @@ class Medicine extends Model
 
     public function interactionsMedicine1()
     {
-        return $this->hasMany(interaction::class, 'medicine_1_id');;
+        return $this->hasMany(interaction::class, 'medicine_1_id');
     }
 
     public function interactionsMedicine2()

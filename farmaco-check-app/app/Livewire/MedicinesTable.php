@@ -122,7 +122,7 @@ final class MedicinesTable extends PowerGridComponent
                     ->route('medicines.delete', ['medicine' => $row->id]),
             ];
         }
-    
+
         return [];
     }
 }

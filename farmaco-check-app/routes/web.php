@@ -10,6 +10,7 @@ Route::view('/', 'welcome');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])->name('profile');
 
@@ -30,7 +31,7 @@ Route::put('/users/{user}/edit', [UserController::class, 'update'])
     ->middleware(['auth', 'verified', 'can:manage users'])->name('users.update');
 
 Route::get('/users/{user}/delete', [UserController::class, 'delete'])
-            ->middleware(['auth', 'verified', 'can:manage users'])->name('users.delete');
+    ->middleware(['auth', 'verified', 'can:manage users'])->name('users.delete');
 
 Route::delete('/users/{user}/delete', [UserController::class, 'destroy'])
     ->middleware(['auth', 'verified', 'can:manage users'])->name('users.destroy');
@@ -62,10 +63,10 @@ Route::get('/interactions', [InteractionsController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('interactions');
 
 Route::get('/interactions/create', [InteractionsController::class, 'create'])
-    ->middleware(['auth', 'verified','can:create interactions'])->name('interactions.create');  
+    ->middleware(['auth', 'verified', 'can:create interactions'])->name('interactions.create');
 
 Route::post('/interactions/create', [InteractionsController::class, 'store'])
-    ->middleware(['auth', 'verified', 'can:create interactions'])->name('interactions.store');  
+    ->middleware(['auth', 'verified', 'can:create interactions'])->name('interactions.store');
 
 Route::get('/interactions/{interaction}/edit', [InteractionsController::class, 'edit'])
     ->middleware(['auth', 'verified', 'can:edit interactions'])->name('interactions.edit');
@@ -79,4 +80,12 @@ Route::get('/interactions/{interaction}/delete', [InteractionsController::class,
 Route::delete('/interactions/{interaction}/delete', [InteractionsController::class, 'destroy'])
     ->middleware(['auth', 'verified', 'can:delete interactions'])->name('interactions.destroy');
 
-require __DIR__.'/auth.php';    
+// Consultas
+Route::get('/interactions/search', [InteractionsController::class, 'search'])
+    ->middleware(['auth', 'verified'])->name('interactions.search');
+
+Route::get('/reset', function () {
+    return redirect()->route('dashboard');
+})->name('interactions.reset');
+
+require __DIR__.'/auth.php';
