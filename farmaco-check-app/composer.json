@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "andyabih/laravel-to-uml": "^1.0",
-        "fakerphp/faker": "^1.23",
+        "fakerphp/faker": "^1.24",
         "laravel/breeze": "^2.3",
         "laravel/pail": "^1.1",
         "laravel/pint": "^1.19",
