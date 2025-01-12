@@ -28,6 +28,10 @@ class DatabaseSeeder extends Seeder
             MedicineSeeder::class,
         ]);
 
+        $this->call([
+            InteractionSeeder::class,
+        ]);
+
         User::factory()
             ->count(15)
             ->create()
