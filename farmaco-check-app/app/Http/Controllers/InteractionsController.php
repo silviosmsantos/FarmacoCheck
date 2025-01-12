@@ -127,4 +127,35 @@ class InteractionsController extends Controller
         }
         return redirect()->route('/login')->with('message', 'Você não tem permissão para excluir interações.');
     }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'medicine1' => 'required|string',
+            'medicine2' => 'required|string',
+        ]);
+    
+        $medicine1 = Medicine::where('name', $request->medicine1)->first();
+        $medicine2 = Medicine::where('name', $request->medicine2)->first();
+    
+        if (!$medicine1 || !$medicine2) {
+            return back()->with('message', 'Um ou ambos os medicamentos não foram encontrados.');
+        }
+    
+        $interaction = Interaction::with(['medicines1', 'medicines2'])
+            ->where('medicine_1_id', $medicine1->id)
+            ->where('medicine_2_id', $medicine2->id)
+            ->orWhere(function ($query) use ($medicine1, $medicine2) {
+                $query->where('medicine_1_id', $medicine2->id)
+                    ->where('medicine_2_id', $medicine1->id);
+            })
+            ->first();
+    
+        if ($interaction) {
+            return view('dashboard', ['interaction' => $interaction]);
+        }
+    
+        return back()->with('message', 'Nenhuma interação encontrada entre os medicamentos informados.');
+    }
+
 }
