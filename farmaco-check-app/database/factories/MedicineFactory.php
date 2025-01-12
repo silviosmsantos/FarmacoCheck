@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Medicine>
@@ -17,11 +18,21 @@ class MedicineFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->word(),
-            'active_ingredient' => $this->faker->word(),
-            'therapeutic_class' => $this->faker->word(),
-            'dosage' => $this->faker->randomElement(['10mg', '20mg', '25mg', '30mg', '40mg', '50mg']),
-            'manufacturer' => $this->faker->company(),
+            'name' => fake()->unique()->word(),
+            'active_ingredient' => fake()->word(),
+            'therapeutic_class' => fake()->word(),
+            'dosage' => fake()->randomElement(['10mg', '20mg', '25mg', '30mg', '40mg', '50mg']),
+            'manufacturer' => fake()->company(),
         ];
+    }
+
+    /**
+     * Indicate that the medicine has a specific dosage.
+     */
+    public function specificDosage(string $dosage): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'dosage' => $dosage,
+        ]);
     }
 }
