@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\InteractionsController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\UserController;
@@ -10,6 +11,7 @@ Route::view('/', 'welcome');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])->name('profile');
 
@@ -78,5 +80,13 @@ Route::get('/interactions/{interaction}/delete', [InteractionsController::class,
 
 Route::delete('/interactions/{interaction}/delete', [InteractionsController::class, 'destroy'])
     ->middleware(['auth', 'verified', 'can:delete interactions'])->name('interactions.destroy');
+
+// Consultas
+Route::get('/interactions/search', [InteractionsController::class, 'search'])
+    ->middleware(['auth', 'verified'])->name('interactions.search');
+
+Route::get('/reset', function () {
+        return redirect()->route('dashboard');
+    })->name('interactions.reset');
 
 require __DIR__.'/auth.php';    
