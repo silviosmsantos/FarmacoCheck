@@ -5,18 +5,44 @@ namespace App\Http\Controllers;
 use App\Models\Medicine;
 use Illuminate\Http\Request;
 
+/**
+ * MedicineController manages CRUD operations for the Medicine model.
+ * 
+ * Responsibilities:
+ * - Display, create, update, and delete medicines.
+ * - Enforce role-based access control (RBAC) for medicine management operations.
+ * - Validate and handle user input for secure processing.
+ */
 class MedicineController extends Controller
 {
+    
+    /**
+     * Display a list of all medicines.
+     *
+     * @return \Illuminate\View\View The view displaying the list of medicines.
+     */
     public function index()
     {
         return view('medicines.index');
     }
 
+      /**
+     * Show the form to create a new medicine.
+     *
+     * @return \Illuminate\View\View The view with the medicine creation form.
+     */
     public function create()
     {
         return view('medicines.create');
     }
 
+    /**
+     * Store a newly created medicine in the database.
+     *
+     * @param Request $request The HTTP request containing the medicine data.
+     * 
+     * @return \Illuminate\Http\RedirectResponse Redirects to the medicines list on success or an error message on failure.
+     */
     public function store(Request $request)
     {
 
@@ -44,11 +70,26 @@ class MedicineController extends Controller
         return redirect()->route('dashboard')->with('error', 'Você não tem permissão para realizar essa ação.');
     }
 
+    /**
+     * Show the form to edit a medicine's details.
+     *
+     * @param Medicine $medicine The medicine to edit.
+     * 
+     * @return \Illuminate\View\View The view with the medicine edit form.
+     */
     public function edit(Medicine $medicine)
     {
         return view('medicines.edit', compact('medicine'));
     }
 
+        /**
+     * Update a medicine's details in the database.
+     *
+     * @param Request $request The HTTP request containing the updated medicine data.
+     * @param Medicine $medicine The medicine to update.
+     * 
+     * @return \Illuminate\Http\RedirectResponse Redirects to the medicines list on success.
+     */
     public function update(Request $request, Medicine $medicine)
     {
         if (auth()->user()->hasRole(['superadmin', 'admin'])) {
@@ -68,11 +109,26 @@ class MedicineController extends Controller
         return redirect()->route('login')->with('message', 'Você não tem permissão para editar usuários.');
     }
 
+    /**
+     * Show the confirmation form for deleting a medicine.
+     *
+     * @param Medicine $medicine The medicine to delete.
+     * 
+     * @return \Illuminate\View\View The view with the medicine deletion form.
+     */
     public function delete(Medicine $medicine)
     {
         return view('medicines.delete', compact('medicine'));
     }
 
+    /**
+     * Delete a medicine from the database.
+     *
+     * @param Request $request The HTTP request containing the confirmation data.
+     * @param Medicine $medicine The medicine to delete.
+     * 
+     * @return \Illuminate\Http\RedirectResponse Redirects to the medicines list on success or an error message on failure.
+     */
     public function destroy(Request $request, Medicine $medicine)
     {
         if (auth()->user()->hasRole(['superadmin', 'admin'])) {
