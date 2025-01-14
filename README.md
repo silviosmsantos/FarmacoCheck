@@ -30,6 +30,8 @@
 Farmaco-Check-App é uma aplicação Laravel construída utilizando Laravel Breeze e TALL Stack (Tailwind, AlphineJS, Laravel e Livewire), banco de dados MySQL e testes configurados com Pest. Este projeto foi criado com o objetivo princiapl de se tornar uma ferramenta para consulta de interações entre medicamentos. A aplicação possui outras funcionalidades importantes como: autenticação de usuários, controle de permissões, gerenciamento de usuários. 
 Este guia ensina como rodar o projeto em máquinas com **Linux** e **Windows**.
 
+Demo - Clique na logo acima ou acesse: https://orca-app-9k2ie.ondigitalocean.app
+
 ---
 
 ## Requisitos
